@@ -11,6 +11,9 @@ void trap_init()
 	 * set the trap-vector base-address for machine-mode
 	 */
 	w_mtvec((reg_t)trap_vector);
+
+	/* enable machine-mode global interrupts. */
+	w_mstatus(r_mstatus() | MSTATUS_MIE);
 }
 
 void external_interrupt_handler()
